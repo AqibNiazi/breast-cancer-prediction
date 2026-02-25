@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import "tailwindcss";
+* {
+  font-family: "Outfit", sans-serif;
+}
+
+/* ─── Custom Theme Tokens (Tailwind v4 syntax — no tailwind.config.js needed) ─── */
+@theme {
+  --font-family-display: "Syne", sans-serif;
+  --font-family-body: "DM Sans", sans-serif;
+  --font-family-mono: "JetBrains Mono", monospace;
+
+  --color-slate-950: #020617;
+
+  --animate-fade-in: fadeIn 0.5s ease forwards;
+  --animate-slide-up: slideUp 0.5s ease forwards;
+}
+
+/* ─── Keyframes ─── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ─── Base Reset ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  /* margin: 0;
+  padding: 0; */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+
+  background-color: #020617;
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(45, 212, 191, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(45, 212, 191, 0.5);
+}
+
+/* Selection */
+::selection {
+  background: rgba(45, 212, 191, 0.2);
+  color: #2dd4bf;
+}
+
+/* ─── Component Classes (plain CSS — no @apply with custom tokens) ─── */
+
+.glass {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(45, 212, 191, 0.1);
+}
+
+.glass-hover {
+  transition:
+    /* background 0.3s ease, */
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.glass-hover:hover {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(45, 212, 191, 0.25);
+  box-shadow: 0 0 30px rgba(45, 212, 191, 0.08);
+}
+
+.glow-teal {
+  box-shadow:
+    0 0 40px rgba(45, 212, 191, 0.15),
+    0 0 80px rgba(45, 212, 191, 0.05);
+}
+.glow-red {
+  box-shadow:
+    0 0 40px rgba(239, 68, 68, 0.15),
+    0 0 80px rgba(239, 68, 68, 0.05);
+}
+
+/* Input field */
+.input-field {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(100, 116, 139, 0.4);
+  border-radius: 0.75rem;
+  padding: 0.625rem 1rem;
+  color: #e2e8f0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.875rem;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.input-field::placeholder {
+  color: #334155;
+}
+.input-field:hover {
+  border-color: rgba(100, 116, 139, 0.65);
+}
+.input-field:focus {
+  border-color: rgba(45, 212, 191, 0.5);
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.1);
+}
+
+/* Primary button */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #2dd4bf;
+  color: #020617;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+  white-space: nowrap;
+}
+.btn-primary:hover {
+  background-color: #5eead4;
+}
+.btn-primary:active {
+  transform: scale(0.96);
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Secondary button */
+.btn-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #1e293b;
+  color: #e2e8f0;
+  font-family: "Syne", sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0.75rem;
+  border: 1px solid #334155;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease;
+  white-space: nowrap;
+}
+.btn-secondary:hover {
+  background-color: #334155;
+  border-color: #475569;
+}
+.btn-secondary:active {
+  transform: scale(0.96);
+}
+
+/* Section label */
+.section-label {
+  display: block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(45, 212, 191, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Animation helpers */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+.animate-slide-up {
+  animation: slideUp 0.5s ease forwards;
+}
+
+/* Stagger delays */
+.stagger-1 {
+  animation-delay: 0.05s;
+}
+.stagger-2 {
+  animation-delay: 0.1s;
+}
+.stagger-3 {
+  animation-delay: 0.15s;
+}
+.stagger-4 {
+  animation-delay: 0.2s;
+}
+.stagger-5 {
+  animation-delay: 0.25s;
+}
