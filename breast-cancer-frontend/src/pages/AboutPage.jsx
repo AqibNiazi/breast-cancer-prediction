@@ -175,7 +175,7 @@ export default function AboutPage() {
             </h2>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {techStack.map(({ name, desc, color }) => (
+            {techStack.map(({ icon: Icon, name, desc, color }) => (
               <div
                 key={name}
                 className="glass glass-hover rounded-2xl p-4 flex flex-col gap-3"

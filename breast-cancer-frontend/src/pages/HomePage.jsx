@@ -64,8 +64,8 @@ export default function HomePage() {
       <section className="relative pt-32 pb-24 px-4 sm:px-6 overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-teal-500/5 rounded-full blur-3xl" />
-          <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-2xl" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-150 h-150 bg-teal-500/5 rounded-full blur-3xl" />
+          <div className="absolute top-1/3 left-1/4 w-75 h-75 bg-blue-500/5 rounded-full blur-2xl" />
         </div>
 
         <div className="relative max-w-5xl mx-auto text-center">
@@ -196,7 +196,7 @@ export default function HomePage() {
           </div>
 
           <div className="flex flex-col gap-4">
-            {steps.map((step, i) => (
+            {steps.map((step) => (
               <div
                 key={step.num}
                 className="glass glass-hover rounded-2xl p-6 flex gap-5 items-start"
