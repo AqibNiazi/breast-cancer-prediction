@@ -30,8 +30,8 @@ ENV/
 # ML Model Artifacts
 # (regenerate via: python scripts/train_and_export.py)
 # ========================
-# app/models/model.pkl
-# app/models/scaler.pkl
+app/models/model.pkl
+app/models/scaler.pkl
 
 # ========================
 # Dataset
