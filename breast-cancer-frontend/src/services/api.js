@@ -11,7 +11,8 @@ const api = axios.create({
 
 export const healthCheck = () => api.get("/health");
 export const getFeatures = () => api.get("/v1/features");
-export const getSampleInput = () => api.get("/v1/sample");
+export const getSampleInput = (type = "any") =>
+  api.get(`/v1/sample?type=${type}`);
 export const predict = (features) => api.post("/v1/predict", { features });
 
 export default api;

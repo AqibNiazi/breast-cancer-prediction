@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
-import { predict, getSampleInput } from "../services/api";
-import { toast } from "react-toastify";
+import { predict } from "../services/api";
+import { getRandomSample } from "../utils/featureGroups";
+import toast from "react-hot-toast";
 
 export function usePrediction() {
   const [result, setResult] = useState(null);
@@ -27,14 +28,14 @@ export function usePrediction() {
     }
   }, []);
 
-  const loadSample = useCallback(async () => {
-    try {
-      const res = await getSampleInput();
-      return res.data.data.sample;
-    } catch {
-      toast.error("Could not load sample data");
-      return null;
-    }
+  // Picks a random case from the local dataset — no API call needed.
+  // Pass type = 'benign' | 'malignant' | 'any'
+  const loadSample = useCallback((type = "any") => {
+    const sample = getRandomSample(type);
+    toast.success(`Loaded random ${sample.label} sample (ID: ${sample.id})`, {
+      icon: sample.label === "Benign" ? "🟢" : "🔴",
+    });
+    return sample.data;
   }, []);
 
   const reset = useCallback(() => {

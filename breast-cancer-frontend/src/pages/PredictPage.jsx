@@ -1,21 +1,17 @@
 import { useState, useCallback } from "react";
-import {
-  Sparkles,
-  RotateCcw,
-  Download,
-  ChevronRight,
-  Info,
-} from "lucide-react";
+import { Sparkles, RotateCcw, Shuffle, ChevronRight, Info } from "lucide-react";
 import { usePrediction } from "@/hooks/usePrediction";
 import {
   FEATURE_GROUPS,
   ALL_FEATURE_KEYS,
   EMPTY_FORM,
-} from "@/util/featureGroups";
+} from "@/utils/featureGroups";
 import FeatureGroup from "@/components/prediction/FeatureGroup";
 import ResultCard from "@/components/prediction/ResultCard";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { toast } from "react-toastify";
+
+const syne = { fontFamily: "Syne, sans-serif" };
 
 function validate(values) {
   const errors = {};
@@ -61,19 +57,15 @@ export default function PredictPage() {
     await runPrediction(numericValues);
   };
 
-  const handleLoadSample = async () => {
-    const sample = await loadSample();
+  const handleLoadSample = (type = "any") => {
+    const sample = loadSample(type);
     if (sample) {
-      // Map sample keys: the backend uses 'concave points_mean' with space,
-      // our form uses 'concave_points_mean' with underscore
       const mapped = {};
       ALL_FEATURE_KEYS.forEach((key) => {
-        const backendKey = key.replace("concave_points", "concave points");
-        mapped[key] = sample[backendKey] ?? sample[key] ?? "";
+        mapped[key] = sample[key] ?? "";
       });
       setValues(mapped);
       setErrors({});
-      toast.success("Sample data loaded — click Analyse to predict");
     }
   };
 
@@ -91,15 +83,21 @@ export default function PredictPage() {
       <div className="max-w-7xl mx-auto">
         {/* Page header */}
         <div className="mb-8 animate-slide-up">
-          <div className="flex items-center gap-2 text-xs text-slate-600 font-mono mb-4">
+          <div
+            className="flex items-center gap-2 text-xs text-slate-600 mb-4"
+            style={{ fontFamily: "JetBrains Mono, monospace" }}
+          >
             <span>Home</span>
             <ChevronRight className="w-3 h-3" />
             <span className="text-teal-400">Prediction</span>
           </div>
-          <h1 className="font-display font-800 text-2xl sm:text-3xl text-white mb-2">
+          <h1
+            className="text-2xl sm:text-3xl text-white mb-2 font-extrabold"
+            style={syne}
+          >
             Run Cancer Analysis
           </h1>
-          <p className="text-slate-500 font-body text-sm">
+          <p className="text-slate-500 text-sm">
             Fill in all 30 FNA biopsy measurements below. Use the sample loader
             to test with a known case.
           </p>
@@ -107,7 +105,6 @@ export default function PredictPage() {
 
         {/* Toolbar */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 animate-slide-up stagger-2">
-          {/* Progress */}
           <div className="flex items-center gap-3">
             <div className="w-32 h-1.5 bg-slate-800 rounded-full overflow-hidden">
               <div
@@ -115,35 +112,62 @@ export default function PredictPage() {
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <span className="text-xs font-mono text-slate-500">
+            <span
+              className="text-xs text-slate-500"
+              style={{ fontFamily: "JetBrains Mono, monospace" }}
+            >
               {filledCount}/{ALL_FEATURE_KEYS.length} fields
             </span>
           </div>
-
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <button
               type="button"
-              onClick={handleLoadSample}
+              onClick={() => handleLoadSample("any")}
               className="btn-secondary text-xs py-2 px-4 gap-1.5"
             >
-              <Download className="w-3.5 h-3.5" />
-              Load Sample
+              <Shuffle className="w-3.5 h-3.5" /> Random
+            </button>
+            <button
+              type="button"
+              onClick={() => handleLoadSample("benign")}
+              className="text-xs py-2 px-4 gap-1.5 inline-flex items-center justify-center rounded-xl border transition-all duration-200 active:scale-95 cursor-pointer"
+              style={{
+                background: "rgba(45,212,191,0.08)",
+                borderColor: "rgba(45,212,191,0.25)",
+                color: "#2dd4bf",
+              }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400" /> Benign
+            </button>
+            <button
+              type="button"
+              onClick={() => handleLoadSample("malignant")}
+              className="text-xs py-2 px-4 gap-1.5 inline-flex items-center justify-center rounded-xl border transition-all duration-200 active:scale-95 cursor-pointer"
+              style={{
+                background: "rgba(239,68,68,0.08)",
+                borderColor: "rgba(239,68,68,0.25)",
+                color: "#f87171",
+              }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-red-400" /> Malignant
             </button>
             <button
               type="button"
               onClick={handleReset}
               className="btn-secondary text-xs py-2 px-4 gap-1.5"
             >
-              <RotateCcw className="w-3.5 h-3.5" />
-              Reset
+              <RotateCcw className="w-3.5 h-3.5" /> Reset
             </button>
           </div>
         </div>
 
         {/* Info banner */}
-        <div className="glass rounded-xl px-4 py-3 flex gap-3 items-start mb-6 border-blue-500/15">
+        <div
+          className="glass rounded-xl px-4 py-3 flex gap-3 items-start mb-6"
+          style={{ borderColor: "rgba(59,130,246,0.15)" }}
+        >
           <Info className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-          <p className="text-xs text-slate-500 font-body leading-relaxed">
+          <p className="text-xs text-slate-500 leading-relaxed">
             These measurements come from digitized images of fine needle
             aspirate (FNA) of breast masses. Values describe characteristics of
             cell nuclei present in the image.
@@ -151,7 +175,6 @@ export default function PredictPage() {
         </div>
 
         <form onSubmit={handleSubmit} noValidate>
-          {/* Feature groups */}
           <div className="flex flex-col gap-4 mb-8">
             {FEATURE_GROUPS.map((group) => (
               <FeatureGroup
@@ -164,7 +187,6 @@ export default function PredictPage() {
             ))}
           </div>
 
-          {/* Submit */}
           <div className="flex justify-center">
             <button
               type="submit"
@@ -173,20 +195,17 @@ export default function PredictPage() {
             >
               {loading ? (
                 <>
-                  <LoadingSpinner size="sm" />
-                  Analysing...
+                  <LoadingSpinner size="sm" /> Analysing...
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-4 h-4" />
-                  Analyse Sample
+                  <Sparkles className="w-4 h-4" /> Analyse Sample
                 </>
               )}
             </button>
           </div>
         </form>
 
-        {/* Result */}
         {result && (
           <div className="mt-10">
             <p className="section-label mb-4">Prediction Result</p>
