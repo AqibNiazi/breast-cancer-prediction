@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.services.prediction_service import get_prediction, get_sample, get_features
-from app.utils.validators import validate_features
+from app.utils.validators import validate_prediction_input
 from app.utils.response_helpers import success_response, error_response
 
 prediction_bp = Blueprint("prediction", __name__)
@@ -12,15 +12,11 @@ def predict():
     if not body:
         return error_response("Request body is required", 400)
 
-    features = body.get("features")
-    if not features:
-        return error_response("'features' key is required in request body", 400)
-
-    is_valid, message = validate_features(features)
+    is_valid, error_message, parsed_features = validate_prediction_input(body)
     if not is_valid:
-        return error_response(message, 422)
+        return error_response(error_message, 422)
 
-    result = get_prediction(features)
+    result = get_prediction(parsed_features)
     return success_response(result)
 
 
