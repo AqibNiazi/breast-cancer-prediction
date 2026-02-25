@@ -9,7 +9,13 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "api/index.py"
+      "dest": "api/index.py",
+      "headers": {
+        "Access-Control-Allow-Origin": "https://breast-cancer-client.vercel.app",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept",
+        "Access-Control-Max-Age": "3600"
+      }
     }
   ]
 }
