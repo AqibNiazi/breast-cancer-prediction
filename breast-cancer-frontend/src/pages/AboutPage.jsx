@@ -24,7 +24,6 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen pt-28 pb-20 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
-
         {/* Header */}
         <div className="mb-12 animate-slide-up">
           <p className="section-label mb-3">About This Project</p>
@@ -32,20 +31,27 @@ export default function AboutPage() {
             OncoScan — How It Works
           </h1>
           <p className="text-slate-400 font-body leading-relaxed text-base">
-            A full-stack machine learning web application for breast cancer prediction,
-            built with Flask, React, and scikit-learn. This is an educational project
-            demonstrating how ML models can be deployed as production-ready APIs.
+            A full-stack machine learning web application for breast cancer
+            prediction, built with Flask, React, and scikit-learn. This is an
+            educational project demonstrating how ML models can be deployed as
+            production-ready APIs.
           </p>
         </div>
 
         {/* Disclaimer banner */}
         <div className="bg-amber-950/30 border border-amber-500/20 rounded-2xl p-5 mb-10 animate-slide-up stagger-1">
-          <h3 className="font-display font-600 text-amber-400 text-sm mb-1">⚠️ Medical Disclaimer</h3>
+          <h3 className="font-display font-600 text-amber-400 text-sm mb-1">
+            ⚠️ Medical Disclaimer
+          </h3>
           <p className="text-xs text-slate-500 font-body leading-relaxed">
-            This tool is for <strong className="text-slate-400">research and educational purposes only</strong>.
-            It is not a substitute for professional medical advice, diagnosis, or treatment.
-            Always seek the advice of a qualified healthcare provider with any questions you may have
-            regarding a medical condition.
+            This tool is for{" "}
+            <strong className="text-slate-400">
+              research and educational purposes only
+            </strong>
+            . It is not a substitute for professional medical advice, diagnosis,
+            or treatment. Always seek the advice of a qualified healthcare
+            provider with any questions you may have regarding a medical
+            condition.
           </p>
         </div>
 
@@ -53,21 +59,34 @@ export default function AboutPage() {
         <section className="mb-12 animate-slide-up stagger-2">
           <div className="flex items-center gap-2 mb-5">
             <Database className="w-4 h-4 text-teal-400" />
-            <h2 className="font-display font-700 text-lg text-white">Dataset</h2>
+            <h2 className="font-display font-700 text-lg text-white">
+              Dataset
+            </h2>
           </div>
           <div className="glass rounded-2xl overflow-hidden">
             <div className="p-5 border-b border-slate-800/60">
               <p className="text-sm text-slate-400 font-body leading-relaxed">
-                The <strong className="text-slate-300">Wisconsin Breast Cancer Dataset</strong> (UCI ML Repository)
-                contains features computed from digitized images of fine needle aspirate (FNA) of breast masses.
-                Features describe characteristics of cell nuclei present in the image.
+                The{" "}
+                <strong className="text-slate-300">
+                  Wisconsin Breast Cancer Dataset
+                </strong>{" "}
+                (UCI ML Repository) contains features computed from digitized
+                images of fine needle aspirate (FNA) of breast masses. Features
+                describe characteristics of cell nuclei present in the image.
               </p>
             </div>
             <div className="divide-y divide-slate-800/40">
               {modelInfo.map(({ label, value }) => (
-                <div key={label} className="flex justify-between items-center px-5 py-3.5">
-                  <span className="text-xs font-mono text-slate-500">{label}</span>
-                  <span className="text-sm font-body font-500 text-slate-300">{value}</span>
+                <div
+                  key={label}
+                  className="flex justify-between items-center px-5 py-3.5"
+                >
+                  <span className="text-xs font-mono text-slate-500">
+                    {label}
+                  </span>
+                  <span className="text-sm font-body font-500 text-slate-300">
+                    {value}
+                  </span>
                 </div>
               ))}
             </div>
@@ -89,29 +108,58 @@ export default function AboutPage() {
         <section className="mb-12 animate-slide-up stagger-3">
           <div className="flex items-center gap-2 mb-5">
             <BookOpen className="w-4 h-4 text-blue-400" />
-            <h2 className="font-display font-700 text-lg text-white">Understanding the Features</h2>
+            <h2 className="font-display font-700 text-lg text-white">
+              Understanding the Features
+            </h2>
           </div>
           <div className="glass rounded-2xl p-5">
             <p className="text-sm text-slate-400 font-body leading-relaxed mb-4">
-              For each cell nucleus, 10 real-valued features are computed. Three types of values
-              are captured for each, resulting in 30 features total:
+              For each cell nucleus, 10 real-valued features are computed. Three
+              types of values are captured for each, resulting in 30 features
+              total:
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
-                { label: 'Mean', desc: 'Average value across all nuclei in the sample', color: 'teal' },
-                { label: 'Standard Error (SE)', desc: 'Statistical uncertainty of the mean measurement', color: 'blue' },
-                { label: 'Worst', desc: 'The largest (most extreme) value found in the sample', color: 'rose' },
+                {
+                  label: "Mean",
+                  desc: "Average value across all nuclei in the sample",
+                  color: "teal",
+                },
+                {
+                  label: "Standard Error (SE)",
+                  desc: "Statistical uncertainty of the mean measurement",
+                  color: "blue",
+                },
+                {
+                  label: "Worst",
+                  desc: "The largest (most extreme) value found in the sample",
+                  color: "rose",
+                },
               ].map(({ label, desc, color }) => (
-                <div key={label} className={`rounded-xl p-4 border ${
-                  color === 'teal' ? 'bg-teal-500/5 border-teal-500/15' :
-                  color === 'blue' ? 'bg-blue-500/5 border-blue-500/15' :
-                  'bg-rose-500/5 border-rose-500/15'
-                }`}>
-                  <h4 className={`font-display font-600 text-sm mb-1 ${
-                    color === 'teal' ? 'text-teal-400' :
-                    color === 'blue' ? 'text-blue-400' : 'text-rose-400'
-                  }`}>{label}</h4>
-                  <p className="text-xs text-slate-500 font-body leading-relaxed">{desc}</p>
+                <div
+                  key={label}
+                  className={`rounded-xl p-4 border ${
+                    color === "teal"
+                      ? "bg-teal-500/5 border-teal-500/15"
+                      : color === "blue"
+                        ? "bg-blue-500/5 border-blue-500/15"
+                        : "bg-rose-500/5 border-rose-500/15"
+                  }`}
+                >
+                  <h4
+                    className={`font-display font-600 text-sm mb-1 ${
+                      color === "teal"
+                        ? "text-teal-400"
+                        : color === "blue"
+                          ? "text-blue-400"
+                          : "text-rose-400"
+                    }`}
+                  >
+                    {label}
+                  </h4>
+                  <p className="text-xs text-slate-500 font-body leading-relaxed">
+                    {desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -122,22 +170,36 @@ export default function AboutPage() {
         <section className="mb-12 animate-slide-up stagger-4">
           <div className="flex items-center gap-2 mb-5">
             <Code2 className="w-4 h-4 text-rose-400" />
-            <h2 className="font-display font-700 text-lg text-white">Tech Stack</h2>
+            <h2 className="font-display font-700 text-lg text-white">
+              Tech Stack
+            </h2>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {techStack.map(({ icon: Icon, name, desc, color }) => (
-              <div key={name} className="glass glass-hover rounded-2xl p-4 flex flex-col gap-3">
-                <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
-                  color === 'teal' ? 'bg-teal-500/10 text-teal-400' :
-                  color === 'blue' ? 'bg-blue-500/10 text-blue-400' :
-                  color === 'rose' ? 'bg-rose-500/10 text-rose-400' :
-                  'bg-amber-500/10 text-amber-400'
-                }`}>
+            {techStack.map(({ name, desc, color }) => (
+              <div
+                key={name}
+                className="glass glass-hover rounded-2xl p-4 flex flex-col gap-3"
+              >
+                <div
+                  className={`w-9 h-9 rounded-xl flex items-center justify-center ${
+                    color === "teal"
+                      ? "bg-teal-500/10 text-teal-400"
+                      : color === "blue"
+                        ? "bg-blue-500/10 text-blue-400"
+                        : color === "rose"
+                          ? "bg-rose-500/10 text-rose-400"
+                          : "bg-amber-500/10 text-amber-400"
+                  }`}
+                >
                   <Icon className="w-4 h-4" strokeWidth={1.8} />
                 </div>
                 <div>
-                  <p className="font-display font-600 text-sm text-slate-200">{name}</p>
-                  <p className="text-xs text-slate-600 font-body mt-0.5">{desc}</p>
+                  <p className="font-display font-600 text-sm text-slate-200">
+                    {name}
+                  </p>
+                  <p className="text-xs text-slate-600 font-body mt-0.5">
+                    {desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -147,11 +209,15 @@ export default function AboutPage() {
         {/* GitHub */}
         <div className="glass rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 animate-slide-up stagger-5">
           <div>
-            <h3 className="font-display font-700 text-base text-white mb-1">View Source Code</h3>
-            <p className="text-sm text-slate-500 font-body">Full backend + frontend code available on GitHub.</p>
+            <h3 className="font-display font-700 text-base text-white mb-1">
+              View Source Code
+            </h3>
+            <p className="text-sm text-slate-500 font-body">
+              Full backend + frontend code available on GitHub.
+            </p>
           </div>
           <Link
-            to="https://github.com/AqibNiazi"
+            to="https://github.com/AqibNiazi/breast-cancer-prediction"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary gap-2 shrink-0"
@@ -160,8 +226,7 @@ export default function AboutPage() {
             GitHub Repo
           </Link>
         </div>
-
       </div>
     </div>
-  )
+  );
 }
