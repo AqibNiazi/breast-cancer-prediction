@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
-import { predict } from "../services/api";
-import { getRandomSample } from "../utils/featureGroups";
-import toast from "react-hot-toast";
+import { predict } from "@/services/api";
+import { getRandomSample } from "@/utils/featureGroups";
+import { toast } from "react-toastify"; 
 
 export function usePrediction() {
   const [result, setResult] = useState(null);
