@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { predict } from "@/services/api.js";
-import { getRandomSample } from "@/utils/featureGroups.js";
+import { getRandomSample } from "@/util/featureGroups";
 import { toast } from "react-toastify"; 
 
 export function usePrediction() {

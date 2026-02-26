@@ -449,7 +449,7 @@ export const getRandomSample = (type = "any") => {
   const pool =
     type === "any"
       ? SAMPLE_CASES
-      : SAMPLE_CASES.filter(
+      : SAMPLE_CASES?.filter(
           (s) => s.label.toLowerCase() === type.toLowerCase(),
         );
   return pool[Math.floor(Math.random() * pool.length)];
