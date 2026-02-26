@@ -1,14 +1,14 @@
 import { useState, useCallback } from "react";
 import { Sparkles, RotateCcw, Shuffle, ChevronRight, Info } from "lucide-react";
-import { usePrediction } from "@/hooks/usePrediction";
+import { usePrediction } from "@/hooks/usePrediction.js";
 import {
   FEATURE_GROUPS,
   ALL_FEATURE_KEYS,
   EMPTY_FORM,
-} from "@/utils/featureGroups";
-import FeatureGroup from "@/components/prediction/FeatureGroup";
-import ResultCard from "@/components/prediction/ResultCard";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
+} from "@/utils/featureGroups.js";
+import FeatureGroup from "@/components/prediction/FeatureGroup.jsx";
+import ResultCard from "@/components/prediction/ResultCard.jsx";
+import LoadingSpinner from "@/components/ui/LoadingSpinner.jsx";
 import { toast } from "react-toastify";
 
 const syne = { fontFamily: "Syne, sans-serif" };

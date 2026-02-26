@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AppLayout from "@/layout/AppLayout";
+import AppLayout from "@/layout/AppLayout.jsx";
 import { AboutPage, HomePage, PredictPage } from "@/pages";
 
 const AppRoutes = () => {

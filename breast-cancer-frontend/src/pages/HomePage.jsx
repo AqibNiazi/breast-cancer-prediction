@@ -10,7 +10,7 @@ import {
   HeartPulse,
   Microscope,
 } from "lucide-react";
-import StatCard from "@/components/ui/StatCard";
+import StatCard from "@/components/ui/StatCard.jsx";
 
 const features = [
   {
