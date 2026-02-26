@@ -20,17 +20,28 @@ function ConfidenceGauge({ value, isMalignant }) {
           endAngle={-45}
         >
           <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
-          <RadialBar dataKey="value" cornerRadius={6} background={{ fill: '#1e293b' }} />
+          <RadialBar
+            dataKey="value"
+            cornerRadius={6}
+            background={{ fill: "#1e293b" }}
+          />
         </RadialBarChart>
       </ResponsiveContainer>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className={clsx('font-display font-800 text-3xl', isMalignant ? 'text-red-400' : 'text-teal-400')}>
+        <span
+          className={clsx(
+            "font-display font-700 text-xl",
+            isMalignant ? "text-red-400" : "text-teal-400",
+          )}
+        >
           {value}%
         </span>
-        <span className="text-xs text-slate-500 font-body mt-0.5">confidence</span>
+        <span className="text-xs text-slate-500 font-body mt-0.5">
+          confidence
+        </span>
       </div>
     </div>
-  )
+  );
 }
 
 function ProbabilityBar({ probabilities }) {
