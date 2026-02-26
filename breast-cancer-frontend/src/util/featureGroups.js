@@ -60,3 +60,117 @@ export const ALL_FEATURE_KEYS = FEATURE_GROUPS.flatMap((g) => g.fields.map((f) =
 export const EMPTY_FORM = Object.fromEntries(
   ALL_FEATURE_KEYS.map((k) => [k, ''])
 )
+
+// ─── Built-in sample cases for offline / random loading ───────────────────
+// CSV column order (after id, diagnosis):
+// radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean,
+// compactness_mean, concavity_mean, concave_points_mean, symmetry_mean, fractal_dimension_mean,
+// radius_se, texture_se, perimeter_se, area_se, smoothness_se,
+// compactness_se, concavity_se, concave_points_se, symmetry_se, fractal_dimension_se,
+// radius_worst, texture_worst, perimeter_worst, area_worst, smoothness_worst,
+// compactness_worst, concavity_worst, concave_points_worst, symmetry_worst, fractal_dimension_worst
+
+export const SAMPLE_CASES = [
+  {
+    label: 'Benign',
+    id: '8510426',
+    data: {
+      radius_mean: 13.54, texture_mean: 14.36, perimeter_mean: 87.46, area_mean: 566.3,
+      smoothness_mean: 0.09779, compactness_mean: 0.08129, concavity_mean: 0.06664,
+      concave_points_mean: 0.04781, symmetry_mean: 0.1885, fractal_dimension_mean: 0.05766,
+      radius_se: 0.2699, texture_se: 0.7886, perimeter_se: 2.058, area_se: 23.56,
+      smoothness_se: 0.008462, compactness_se: 0.0146, concavity_se: 0.02387,
+      concave_points_se: 0.01315, symmetry_se: 0.0198, fractal_dimension_se: 0.0023,
+      radius_worst: 15.11, texture_worst: 19.26, perimeter_worst: 99.7, area_worst: 711.2,
+      smoothness_worst: 0.144, compactness_worst: 0.1773, concavity_worst: 0.239,
+      concave_points_worst: 0.1288, symmetry_worst: 0.2977, fractal_dimension_worst: 0.07259,
+    },
+  },
+  {
+    label: 'Benign',
+    id: '857010',
+    data: {
+      radius_mean: 9.504, texture_mean: 12.44, perimeter_mean: 60.34, area_mean: 273.9,
+      smoothness_mean: 0.1024, compactness_mean: 0.06492, concavity_mean: 0.02956,
+      concave_points_mean: 0.02076, symmetry_mean: 0.1815, fractal_dimension_mean: 0.06905,
+      radius_se: 0.2773, texture_se: 0.9768, perimeter_se: 1.909, area_se: 15.7,
+      smoothness_se: 0.009606, compactness_se: 0.01432, concavity_se: 0.01985,
+      concave_points_se: 0.01421, symmetry_se: 0.02027, fractal_dimension_se: 0.002968,
+      radius_worst: 10.23, texture_worst: 15.66, perimeter_worst: 65.13, area_worst: 314.9,
+      smoothness_worst: 0.1324, compactness_worst: 0.1148, concavity_worst: 0.08867,
+      concave_points_worst: 0.06227, symmetry_worst: 0.245, fractal_dimension_worst: 0.07773,
+    },
+  },
+  {
+    label: 'Benign',
+    id: '8670',
+    data: {
+      radius_mean: 11.74, texture_mean: 14.02, perimeter_mean: 74.24, area_mean: 427.3,
+      smoothness_mean: 0.07373, compactness_mean: 0.0283, concavity_mean: 0.0,
+      concave_points_mean: 0.0, symmetry_mean: 0.1695, fractal_dimension_mean: 0.05898,
+      radius_se: 0.2526, texture_se: 0.8737, perimeter_se: 1.573, area_se: 17.41,
+      smoothness_se: 0.005168, compactness_se: 0.006187, concavity_se: 0.0,
+      concave_points_se: 0.0, symmetry_se: 0.01855, fractal_dimension_se: 0.002015,
+      radius_worst: 12.5, texture_worst: 16.05, perimeter_worst: 79.07, area_worst: 484.1,
+      smoothness_worst: 0.0842, compactness_worst: 0.04635, concavity_worst: 0.0,
+      concave_points_worst: 0.0, symmetry_worst: 0.2185, fractal_dimension_worst: 0.0658,
+    },
+  },
+  {
+    label: 'Malignant',
+    id: '842302',
+    data: {
+      radius_mean: 17.99, texture_mean: 10.38, perimeter_mean: 122.8, area_mean: 1001.0,
+      smoothness_mean: 0.1184, compactness_mean: 0.2776, concavity_mean: 0.3001,
+      concave_points_mean: 0.1471, symmetry_mean: 0.2419, fractal_dimension_mean: 0.07871,
+      radius_se: 1.095, texture_se: 0.9053, perimeter_se: 8.589, area_se: 153.4,
+      smoothness_se: 0.006399, compactness_se: 0.04904, concavity_se: 0.05373,
+      concave_points_se: 0.01587, symmetry_se: 0.03003, fractal_dimension_se: 0.006193,
+      radius_worst: 25.38, texture_worst: 17.33, perimeter_worst: 184.6, area_worst: 2019.0,
+      smoothness_worst: 0.1622, compactness_worst: 0.6656, concavity_worst: 0.7119,
+      concave_points_worst: 0.2654, symmetry_worst: 0.4601, fractal_dimension_worst: 0.1189,
+    },
+  },
+  {
+    label: 'Malignant',
+    id: '84300903',
+    data: {
+      radius_mean: 20.57, texture_mean: 17.77, perimeter_mean: 132.9, area_mean: 1326.0,
+      smoothness_mean: 0.08474, compactness_mean: 0.07864, concavity_mean: 0.0869,
+      concave_points_mean: 0.07017, symmetry_mean: 0.1812, fractal_dimension_mean: 0.05667,
+      radius_se: 0.5435, texture_se: 0.7339, perimeter_se: 3.398, area_se: 74.08,
+      smoothness_se: 0.005225, compactness_se: 0.01308, concavity_se: 0.0186,
+      concave_points_se: 0.0134, symmetry_se: 0.01389, fractal_dimension_se: 0.003532,
+      radius_worst: 24.99, texture_worst: 23.41, perimeter_worst: 158.8, area_worst: 1956.0,
+      smoothness_worst: 0.1238, compactness_worst: 0.1866, concavity_worst: 0.2416,
+      concave_points_worst: 0.186, symmetry_worst: 0.275, fractal_dimension_worst: 0.08902,
+    },
+  },
+  {
+    label: 'Malignant',
+    id: '843786',
+    data: {
+      radius_mean: 12.46, texture_mean: 24.04, perimeter_mean: 83.97, area_mean: 475.9,
+      smoothness_mean: 0.1186, compactness_mean: 0.2396, concavity_mean: 0.2273,
+      concave_points_mean: 0.08543, symmetry_mean: 0.203, fractal_dimension_mean: 0.08243,
+      radius_se: 0.2976, texture_se: 1.599, perimeter_se: 2.039, area_se: 27.9,
+      smoothness_se: 0.009259, compactness_se: 0.05372, concavity_se: 0.05526,
+      concave_points_se: 0.01781, symmetry_se: 0.05166, fractal_dimension_se: 0.004957,
+      radius_worst: 15.09, texture_worst: 40.68, perimeter_worst: 97.65, area_worst: 711.4,
+      smoothness_worst: 0.1853, compactness_worst: 1.058, concavity_worst: 1.105,
+      concave_points_worst: 0.221, symmetry_worst: 0.4366, fractal_dimension_worst: 0.2075,
+    },
+  },
+]
+
+/**
+ * Returns a random sample from SAMPLE_CASES.
+ * Pass type = 'benign' | 'malignant' | 'any' to filter.
+ */
+export function getRandomSample(type = 'any') {
+  const pool =
+    type === 'any'
+      ? SAMPLE_CASES
+      : SAMPLE_CASES.filter((s) => s.label.toLowerCase() === type.toLowerCase())
+  return pool[Math.floor(Math.random() * pool.length)]
+}
