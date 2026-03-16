@@ -14,7 +14,6 @@
 
 </div>
 
----
 
 ## 📌 Table of Contents
 
@@ -33,7 +32,6 @@
 - [Deployment](#-deployment)
 - [Contributing](#-contributing)
 
----
 
 ## 🧬 Overview
 
@@ -52,7 +50,6 @@ The system takes **30 numerical measurements** from a Fine Needle Aspiration (FN
 | 📱 Responsive UI    | Works on mobile, tablet, and desktop                  |
 | 🌐 Deployed         | Vercel (frontend + backend)                           |
 
----
 
 ## 🌐 Live Demo
 
@@ -63,7 +60,6 @@ The system takes **30 numerical measurements** from a Fine Needle Aspiration (FN
 | 🔍 Sample Endpoint | [/api/v1/sample](https://breast-cancer-server.vercel.app/api/v1/sample)            |
 | ❤️ Health Check    | [/api/health](https://breast-cancer-server.vercel.app/api/health)                  |
 
----
 
 ## 📸 Screenshots
 
@@ -71,41 +67,36 @@ The system takes **30 numerical measurements** from a Fine Needle Aspiration (FN
 
 > Landing page showing model stats, feature highlights, and how the system works.
 
-![Home Page](docs/screenshots/home.png)
+![Home Page](screenshots/home.png)
 
----
 
 ### 🔬 Prediction Form
 
 > Input form with 30 FNA measurements grouped into Mean, Standard Error, and Worst sections. Includes a **Load Sample** button for instant testing.
 
-![Prediction Form](docs/screenshots/predict-form.png)
+![Prediction Form](screenshots/predict-form.png)
 
----
 
 ### ✅ Benign Result
 
 > Result card showing a Benign prediction with confidence gauge and probability breakdown chart.
 
-![Benign Result](docs/screenshots/result-benign.png)
+![Benign Result](screenshots/result-benign.png)
 
----
 
 ### 🚨 Malignant Result
 
 > Result card showing a Malignant prediction with high-risk indicator.
 
-![Malignant Result](docs/screenshots/result-malignant.png)
+![Malignant Result](screenshots/result-malignant.png)
 
----
 
 ### 📖 About Page
 
 > Dataset info, model specs, feature explanations, and tech stack overview.
 
-![About Page](docs/screenshots/about.png)
+![About Page](screenshots/about.png)
 
----
 
 ## ⚙️ How It Works
 
@@ -138,7 +129,6 @@ Each of the 10 base measurements (radius, texture, perimeter, area, smoothness, 
 | **Standard Error (SE)** | Statistical spread / uncertainty of the measurement  |
 | **Worst**               | The largest (most extreme) value found in the sample |
 
----
 
 ## 🛠️ Tech Stack
 
@@ -173,7 +163,6 @@ Each of the 10 base measurements (radius, texture, perimeter, area, smoothness, 
 | [Vercel](https://vercel.com) | Hosting (frontend + serverless backend) |
 | [GitHub](https://github.com) | Source control                          |
 
----
 
 ## 📁 Project Structure
 
@@ -233,13 +222,11 @@ breast-cancer-prediction/               ← Root (this repo)
 │   ├── vite.config.js
 │   └── package.json
 │
-├── docs/
-│   └── screenshots/                    ← Add your screenshots here
+├── screenshots/ 
+│                     
 │
 └── README.md                           ← You are here
 ```
-
----
 
 ## 🚀 Getting Started
 
@@ -248,8 +235,6 @@ breast-cancer-prediction/               ← Root (this repo)
 - Python 3.10+
 - Node.js 18+
 - npm or yarn
-
----
 
 ### Backend Setup
 
@@ -318,7 +303,6 @@ python run.py
 
 API is now running at **http://localhost:5000**
 
----
 
 ### Frontend Setup
 
@@ -352,7 +336,6 @@ Frontend is now running at **http://localhost:5173**
 
 > The Vite dev server automatically proxies `/api/*` requests to the Flask backend on port 5000.
 
----
 
 ## 📡 API Reference
 
@@ -408,7 +391,6 @@ Returns a sample malignant case from the dataset — useful for testing the UI.
 }
 ```
 
----
 
 ## 📊 Model Performance
 
@@ -423,7 +405,6 @@ Returns a sample malignant case from the dataset — useful for testing the UI.
 
 The full model development process — including EDA, preprocessing, training, and evaluation — is documented in [`breast-cancer-prediction.ipynb`](breast-cancer-backend/breast-cancer-prediction.ipynb).
 
----
 
 ## 📂 Dataset
 
@@ -436,7 +417,6 @@ The full model development process — including EDA, preprocessing, training, a
 
 Features are computed from digitized images of fine needle aspirates of breast masses. They describe characteristics of the cell nuclei present in the image — including radius, texture, perimeter, area, smoothness, compactness, concavity, concave points, symmetry, and fractal dimension.
 
----
 
 ## ☁️ Deployment
 
@@ -465,8 +445,6 @@ CORS_ORIGINS=https://your-frontend.vercel.app
 VITE_API_URL=https://your-backend.vercel.app
 ```
 
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! If you're a student or researcher who wants to extend this project, here are some ideas:
@@ -485,7 +463,6 @@ Contributions are welcome! If you're a student or researcher who wants to extend
 4. Push to your branch (`git push origin feature/your-feature`)
 5. Open a Pull Request
 
----
 
 ## 👨‍💻 Author
 
@@ -493,13 +470,11 @@ Contributions are welcome! If you're a student or researcher who wants to extend
 
 [![GitHub](https://img.shields.io/badge/GitHub-AqibNiazi-181717?style=flat&logo=github)](https://github.com/AqibNiazi)
 
----
 
 ## 📄 License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
----
 
 <div align="center">
 
