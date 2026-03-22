@@ -2,365 +2,141 @@
 
 # 🔬 OncoScan — Breast Cancer Prediction System
 
-**An AI-powered full-stack web application that predicts breast cancer (Malignant / Benign) from Fine Needle Aspiration biopsy measurements using Logistic Regression.**
+**A full-stack machine learning application that predicts breast cancer diagnosis (Malignant / Benign) from Fine Needle Aspiration biopsy measurements using Logistic Regression — deployed end-to-end as a production web application.**
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-breast--cancer--client.vercel.app-2dd4bf?style=for-the-badge&logo=vercel&logoColor=white)](https://breast-cancer-client.vercel.app)
 [![Backend API](https://img.shields.io/badge/Backend%20API-breast--cancer--server.vercel.app-0ea5e9?style=for-the-badge&logo=vercel&logoColor=white)](https://breast-cancer-server.vercel.app)
+[![Kaggle Notebook](https://img.shields.io/badge/Kaggle-Notebook-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/code/maqibniazi/breast-cancer-classification)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-> ⚠️ **Medical Disclaimer:** This project is for **educational and research purposes only**. It is not a substitute for professional medical advice, diagnosis, or treatment.
+> ⚠️ **Medical Disclaimer:** This project is for educational and research purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment.
 
 </div>
 
 
-## 📌 Table of Contents
+## Overview
 
-- [Overview](#-overview)
-- [Live Demo](#-live-demo)
-- [Screenshots](#-screenshots)
-- [How It Works](#-how-it-works)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [Getting Started](#-getting-started)
-  - [Backend Setup](#backend-setup)
-  - [Frontend Setup](#frontend-setup)
-- [API Reference](#-api-reference)
-- [Model Performance](#-model-performance)
-- [Dataset](#-dataset)
-- [Deployment](#-deployment)
-- [Contributing](#-contributing)
+OncoScan demonstrates the complete machine learning engineering pipeline — from raw data exploration and model training through to a deployed, user-facing product. The system accepts 30 numerical measurements extracted from Fine Needle Aspiration (FNA) biopsy images and returns a real-time Malignant or Benign prediction with a confidence score and full probability breakdown.
+
+The project was built to close the gap that exists in most academic ML work: training a model is only the beginning. This application takes a Logistic Regression classifier trained on the Wisconsin Breast Cancer Dataset and wraps it in a production-grade REST API consumed by a responsive React frontend — both deployed on Vercel.
 
 
-## 🧬 Overview
+## Model Performance
 
-OncoScan is a full-stack machine learning application built to demonstrate how a trained ML model can be served as a production-grade REST API and consumed by a modern React frontend.
+| Metric | Value |
+|---|---|
+| Algorithm | Logistic Regression with L2 Regularisation |
+| Dataset | Wisconsin Breast Cancer Dataset (UCI / Kaggle) |
+| Total Samples | 569 patient records |
+| Train / Test Split | 80% / 20% with stratification |
+| Feature Scaling | StandardScaler (z-score normalisation) |
+| **Test Accuracy** | **97.4%** |
+| **ROC-AUC Score** | **0.997** |
+| Cross-Validation Mean | 97.5% ± 0.8% (5-fold) |
+| Class Distribution | 357 Benign / 212 Malignant |
 
-The system takes **30 numerical measurements** from a Fine Needle Aspiration (FNA) biopsy — such as cell radius, texture, perimeter, area, and concavity — and predicts whether the tumor is **Malignant** or **Benign**, along with a confidence score and probability breakdown.
-
-### Key Highlights
-
-| Feature             | Detail                                                |
-| ------------------- | ----------------------------------------------------- |
-| 🎯 Model Accuracy   | **97.4%** on test set                                 |
-| 🧪 Training Data    | 569 patient records (Wisconsin Breast Cancer Dataset) |
-| 📊 Input Features   | 30 FNA cell nucleus measurements                      |
-| ⚡ Prediction Speed | < 100ms API response time                             |
-| 📱 Responsive UI    | Works on mobile, tablet, and desktop                  |
-| 🌐 Deployed         | Vercel (frontend + backend)                           |
-
-
-## 🌐 Live Demo
-
-| Service            | URL                                                                                |
-| ------------------ | ---------------------------------------------------------------------------------- |
-| 🖥️ Frontend        | [https://breast-cancer-client.vercel.app](https://breast-cancer-client.vercel.app) |
-| ⚙️ Backend API     | [https://breast-cancer-server.vercel.app](https://breast-cancer-server.vercel.app) |
-| 🔍 Sample Endpoint | [/api/v1/sample](https://breast-cancer-server.vercel.app/api/v1/sample)            |
-| ❤️ Health Check    | [/api/health](https://breast-cancer-server.vercel.app/api/health)                  |
+The full research notebook covering EDA, correlation analysis, feature importance, confusion matrix, and ROC curve analysis is available on Kaggle:
+👉 [breast-cancer-classification on Kaggle](https://www.kaggle.com/code/maqibniazi/breast-cancer-classification)
 
 
-## 📸 Screenshots
+## Screenshots
 
-### 🏠 Home Page
-
-> Landing page showing model stats, feature highlights, and how the system works.
-
+### Home Page
 ![Home Page](screenshots/home.png)
 
-
-### 🔬 Prediction Form
-
-> Input form with 30 FNA measurements grouped into Mean, Standard Error, and Worst sections. Includes a **Load Sample** button for instant testing.
+### Prediction Form
+The form accepts all 30 FNA measurements grouped into Mean, Standard Error, and Worst value sections. A sample loader populates the form with real dataset cases for instant testing.
 
 ![Prediction Form](screenshots/predict-form.png)
 
+### Prediction Results
+Results include a radial confidence gauge and a probability breakdown chart for both classes.
 
-### ✅ Benign Result
-
-> Result card showing a Benign prediction with confidence gauge and probability breakdown chart.
-
-![Benign Result](screenshots/result-benign.png)
-
-
-### 🚨 Malignant Result
-
-> Result card showing a Malignant prediction with high-risk indicator.
-
-![Malignant Result](screenshots/result-malignant.png)
+| Benign Result | Malignant Result |
+|---|---|
+| ![Benign](screenshots/result-benign.png) | ![Malignant](screenshots/result-malignant.png) |
 
 
-### 📖 About Page
 
-> Dataset info, model specs, feature explanations, and tech stack overview.
+## How It Works
 
-![About Page](screenshots/about.png)
-
-
-## ⚙️ How It Works
+The system follows a straightforward inference pipeline. A user submits 30 biopsy measurements through the React frontend, which sends a POST request to the Flask REST API. The API validates the input, passes the feature vector through the saved StandardScaler, runs inference on the Logistic Regression model, and returns the prediction with confidence scores in under 100ms.
 
 ```
-User enters 30 FNA measurements
-          │
-          ▼
-React Frontend (Vite + Tailwind CSS)
-          │  POST /api/v1/predict
-          ▼
-Flask REST API (Vercel Serverless)
-          │
-          ▼
-StandardScaler → Logistic Regression Model
-          │
-          ▼
-{ prediction, label, confidence, probabilities }
-          │
-          ▼
-Result displayed with gauge chart + probability bars
+React Frontend  →  POST /api/v1/predict  →  Flask API
+                                                  ↓
+                                         StandardScaler transform
+                                                  ↓
+                                         Logistic Regression model
+                                                  ↓
+                              { label, confidence, probabilities }
 ```
 
-### The 3 Feature Groups
+### Feature Engineering
 
-Each of the 10 base measurements (radius, texture, perimeter, area, smoothness, compactness, concavity, concave points, symmetry, fractal dimension) is captured in 3 forms — giving **30 features total**:
+Each of the 10 base cellular measurements (radius, texture, perimeter, area, smoothness, compactness, concavity, concave points, symmetry, fractal dimension) is represented in three statistical forms — giving 30 features total.
 
-| Group                   | Description                                          |
-| ----------------------- | ---------------------------------------------------- |
-| **Mean**                | Average value across all cell nuclei in the sample   |
-| **Standard Error (SE)** | Statistical spread / uncertainty of the measurement  |
-| **Worst**               | The largest (most extreme) value found in the sample |
-
-
-## 🛠️ Tech Stack
-
-### Frontend
-
-| Technology                                                               | Purpose                   |
-| ------------------------------------------------------------------------ | ------------------------- |
-| [React 19](https://react.dev)                                            | UI framework              |
-| [Vite](https://vitejs.dev)                                               | Build tool & dev server   |
-| [Tailwind CSS v4](https://tailwindcss.com)                               | Utility-first styling     |
-| [Recharts](https://recharts.org)                                         | Radial gauge & bar charts |
-| [Axios](https://axios-http.com)                                          | HTTP client               |
-| [React Router v7](https://reactrouter.com)                               | Client-side routing       |
-| [Lucide React](https://lucide.dev)                                       | Icon library              |
-| [react toastify](https://fkhadra.github.io/react-toastify/introduction/) | Toast notifications       |
-
-### Backend
-
-| Technology                                               | Purpose                         |
-| -------------------------------------------------------- | ------------------------------- |
-| [Flask 3.1](https://flask.palletsprojects.com)           | Python REST API framework       |
-| [scikit-learn](https://scikit-learn.org)                 | ML model training & inference   |
-| [pandas](https://pandas.pydata.org)                      | Data loading & preprocessing    |
-| [numpy](https://numpy.org)                               | Numerical computation           |
-| [python-dotenv](https://pypi.org/project/python-dotenv/) | Environment variable management |
-| [gunicorn](https://gunicorn.org)                         | WSGI server                     |
-
-### Infrastructure
-
-| Technology                   | Purpose                                 |
-| ---------------------------- | --------------------------------------- |
-| [Vercel](https://vercel.com) | Hosting (frontend + serverless backend) |
-| [GitHub](https://github.com) | Source control                          |
+| Group | Description |
+|---|---|
+| Mean | Average value across all nuclei in the sample |
+| Standard Error | Statistical uncertainty of the measurement |
+| Worst | The largest (most extreme) value found in the sample |
 
 
-## 📁 Project Structure
+## Tech Stack
+
+**Machine Learning:** Python, scikit-learn, pandas, NumPy, Logistic Regression, StandardScaler
+
+**Backend:** Flask 3.1, REST API, serverless deployment on Vercel
+
+**Frontend:** React 19, Vite, Tailwind CSS v4, Recharts, React Router v7, Axios
+
+**Infrastructure:** Vercel (frontend + backend), GitHub
+
+
+## Project Structure
 
 ```
-breast-cancer-prediction/               ← Root (this repo)
+breast-cancer-prediction/
 │
-├── breast-cancer-backend/              ← Flask REST API
-│   ├── api/
-│   │   └── index.py                    # Vercel serverless entry point
+├── breast-cancer-backend/
 │   ├── app/
-│   │   ├── __init__.py                 # Flask app factory
-│   │   ├── models/                     # model.pkl + scaler.pkl (git-ignored)
-│   │   ├── routes/
-│   │   │   ├── health.py               # GET /api/health
-│   │   │   └── prediction.py           # GET /api/v1/sample, POST /api/v1/predict
-│   │   ├── services/
-│   │   │   └── prediction_service.py   # ML inference logic
-│   │   └── utils/
-│   │       ├── validators.py           # Input validation (30 features)
-│   │       └── response_helpers.py     # Standardised JSON responses
-│   ├── config/
-│   │   └── settings.py                 # Dev / Prod / Test configurations
+│   │   ├── routes/          # API endpoints (health, predict, sample, features)
+│   │   ├── services/        # ML inference logic and model loading
+│   │   └── utils/           # Input validation and response helpers
+│   ├── config/              # Dev / Prod / Test configurations
 │   ├── scripts/
-│   │   └── train_and_export.py         # One-time model training script
-│   ├── tests/
-│   │   └── test_prediction.py
-│   ├── breast-cancer-prediction.ipynb  # EDA + model development notebook
-│   ├── vercel.json                     # Vercel deployment config
-│   ├── requirements.txt
-│   └── run.py                          # Local dev server entry point
+│   │   └── train_and_export.py   # Reproducible model training script
+│   ├── breast-cancer-prediction.ipynb   # Full research notebook
+│   └── requirements.txt
 │
-├── breast-cancer-frontend/             ← React + Vite frontend
+├── breast-cancer-frontend/
 │   ├── src/
-│   │   ├── components/
-│   │   │   ├── layout/
-│   │   │   │   ├── Navbar.jsx          # Sticky navbar with mobile menu
-│   │   │   │   └── Footer.jsx
-│   │   │   ├── prediction/
-│   │   │   │   ├── FeatureGroup.jsx    # Collapsible input group
-│   │   │   │   ├── FeatureInput.jsx    # Single feature number input
-│   │   │   │   └── ResultCard.jsx      # Prediction result with charts
-│   │   │   └── ui/
-│   │   │       ├── StatCard.jsx        # Stat display card
-│   │   │       └── LoadingSpinner.jsx
-│   │   ├── hooks/
-│   │   │   └── usePrediction.js        # API call + state management hook
-│   │   ├── pages/
-│   │   │   ├── HomePage.jsx            # Landing page
-│   │   │   ├── PredictPage.jsx         # Main prediction form
-│   │   │   ├── AboutPage.jsx           # Dataset + model info
-│   │   │   └── NotFoundPage.jsx
-│   │   ├── services/
-│   │   │   └── api.js                  # Axios instance + API methods
-│   │   └── utils/
-│   │       └── featureGroups.js        # All 30 feature definitions
-│   ├── vercel.json                     # React Router fix for Vercel
-│   ├── vite.config.js
+│   │   ├── components/      # Navbar, FeatureGroup, ResultCard, StatCard
+│   │   ├── hooks/           # usePrediction — API call and state management
+│   │   ├── pages/           # Home, Predict, About, 404
+│   │   ├── services/        # Axios API client
+│   │   └── utils/           # All 30 feature definitions and sample cases
 │   └── package.json
 │
-├── screenshots/ 
-│                     
-│
-└── README.md                           ← You are here
+└── README.md
 ```
 
-## 🚀 Getting Started
 
-### Prerequisites
+## API Reference
 
-- Python 3.10+
-- Node.js 18+
-- npm or yarn
+Base URL: `https://breast-cancer-server.vercel.app`
 
-### Backend Setup
+| Endpoint | Method | Description |
+|---|---|---|
+| `/api/health` | GET | Health check |
+| `/api/v1/features` | GET | Returns all 30 feature names and descriptions |
+| `/api/v1/sample` | GET | Returns a random sample case (`?type=benign` or `?type=malignant`) |
+| `/api/v1/predict` | POST | Returns prediction, confidence, and probabilities |
 
-#### 1. Clone the repository
-
-```bash
-git clone https://github.com/AqibNiazi/breast-cancer-prediction.git
-cd breast-cancer-prediction/breast-cancer-backend
-```
-
-#### 2. Create and activate virtual environment
-
-```bash
-python -m venv venv
-
-# macOS / Linux
-source venv/bin/activate
-
-# Windows
-venv\Scripts\activate
-```
-
-#### 3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-#### 4. Configure environment variables
-
-```bash
-cp .env.example .env
-```
-
-Your `.env` file should look like this:
-
-```env
-FLASK_ENV=development
-SECRET_KEY=your-secret-key-here
-MODEL_PATH=app/models/model.pkl
-SCALER_PATH=app/models/scaler.pkl
-CORS_ORIGINS=http://localhost:5173
-```
-
-#### 5. Download the dataset
-
-Download `data.csv` from [Kaggle — Wisconsin Breast Cancer Dataset](https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data) and place it at:
-
-```
-breast-cancer-backend/dataset/data.csv
-```
-
-#### 6. Train the model (run once)
-
-```bash
-python scripts/train_and_export.py --data dataset/data.csv
-```
-
-This generates `app/models/model.pkl` and `app/models/scaler.pkl`.
-
-#### 7. Start the backend server
-
-```bash
-python run.py
-```
-
-API is now running at **http://localhost:5000**
-
-
-### Frontend Setup
-
-#### 1. Navigate to the frontend folder
-
-```bash
-cd ../breast-cancer-frontend
-```
-
-#### 2. Install dependencies
-
-```bash
-npm install
-```
-
-#### 3. Configure environment variables
-
-Create a `.env.local` file:
-
-```env
-VITE_API_URL=http://localhost:5000
-```
-
-#### 4. Start the development server
-
-```bash
-npm run dev
-```
-
-Frontend is now running at **http://localhost:5173**
-
-> The Vite dev server automatically proxies `/api/*` requests to the Flask backend on port 5000.
-
-
-## 📡 API Reference
-
-Base URL (production): `https://breast-cancer-server.vercel.app`
-
-### `GET /api/health`
-
-Health check endpoint.
-
-```json
-{ "status": "ok", "message": "Breast Cancer Prediction API is running" }
-```
-
-### `GET /api/v1/features`
-
-Returns all 30 feature names with descriptions.
-
-### `GET /api/v1/sample`
-
-Returns a sample malignant case from the dataset — useful for testing the UI.
-
-### `POST /api/v1/predict`
-
-**Request:**
-
+**Sample predict request:**
 ```json
 {
   "features": {
@@ -368,14 +144,12 @@ Returns a sample malignant case from the dataset — useful for testing the UI.
     "texture_mean": 10.38,
     "perimeter_mean": 122.8,
     "area_mean": 1001.0,
-    "smoothness_mean": 0.1184,
-    "...": "... (all 30 features)"
+    "...": "all 30 features"
   }
 }
 ```
 
-**Response:**
-
+**Sample response:**
 ```json
 {
   "success": true,
@@ -383,103 +157,53 @@ Returns a sample malignant case from the dataset — useful for testing the UI.
     "prediction": 1,
     "label": "Malignant",
     "confidence": 98.24,
-    "probabilities": {
-      "benign": 1.76,
-      "malignant": 98.24
-    }
+    "probabilities": { "benign": 1.76, "malignant": 98.24 }
   }
 }
 ```
 
 
-## 📊 Model Performance
-
-| Metric             | Value                                  |
-| ------------------ | -------------------------------------- |
-| Algorithm          | Logistic Regression                    |
-| Training samples   | 455 (80%)                              |
-| Test samples       | 114 (20%)                              |
-| **Test Accuracy**  | **97.4%**                              |
-| Feature scaling    | StandardScaler (z-score normalisation) |
-| Class distribution | 357 Benign / 212 Malignant             |
-
-The full model development process — including EDA, preprocessing, training, and evaluation — is documented in [`breast-cancer-prediction.ipynb`](breast-cancer-backend/breast-cancer-prediction.ipynb).
-
-
-## 📂 Dataset
+## Dataset
 
 **Wisconsin Breast Cancer Dataset** — UCI Machine Learning Repository
 
-- **Source:** [Kaggle](https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data)
-- **Samples:** 569 patients
-- **Features:** 30 real-valued FNA measurements per sample
-- **Target:** Diagnosis — `M` (Malignant) or `B` (Benign)
+Features are computed from digitized images of fine needle aspirates of breast masses and describe characteristics of the cell nuclei. The dataset contains no missing values and has been widely used in classification benchmarks since its publication by Dr. William H. Wolberg at the University of Wisconsin.
 
-Features are computed from digitized images of fine needle aspirates of breast masses. They describe characteristics of the cell nuclei present in the image — including radius, texture, perimeter, area, smoothness, compactness, concavity, concave points, symmetry, and fractal dimension.
+Source: [Kaggle — UCI Breast Cancer Wisconsin](https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data)
 
 
-## ☁️ Deployment
+## Local Setup
 
-Both services are deployed on **Vercel** from this single monorepo.
-
-| Service  | Root Directory            | Framework                 |
-| -------- | ------------------------- | ------------------------- |
-| Frontend | `breast-cancer-frontend/` | Vite                      |
-| Backend  | `breast-cancer-backend/`  | Other (Python serverless) |
-
-### Required Environment Variables
-
-**Backend (Vercel)**
-
-```
-FLASK_ENV=production
-SECRET_KEY=<strong-random-key>
-MODEL_PATH=app/models/model.pkl
-SCALER_PATH=app/models/scaler.pkl
-CORS_ORIGINS=https://your-frontend.vercel.app
-```
-
-**Frontend (Vercel)**
-
-```
-VITE_API_URL=https://your-backend.vercel.app
-```
-
-## 🤝 Contributing
-
-Contributions are welcome! If you're a student or researcher who wants to extend this project, here are some ideas:
-
-- 🔁 Try other classifiers (Random Forest, SVM, XGBoost) and compare accuracy
-- 📈 Add a model comparison dashboard
-- 🖼️ Add image-based prediction using CNNs
-- 📋 Add patient history / session storage
-- 🌍 Add multi-language support
-
-**To contribute:**
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'feat: add your feature'`)
-4. Push to your branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
+If you want to run this project locally, the backend requires Python 3.10+ and the frontend requires Node.js 18+. Clone the repository, install dependencies in each folder with `pip install -r requirements.txt` and `npm install` respectively, train the model once using `python scripts/train_and_export.py --data dataset/data.csv`, then start both servers. Full setup instructions are in each subfolder's README.
 
 
-## 👨‍💻 Author
+## Future Work
+
+There are several natural extensions to this project for researchers and students who want to build on it. Comparing ensemble methods like Random Forest and XGBoost against Logistic Regression on this dataset would be a straightforward experiment. Adding dimensionality reduction via PCA to address the high multicollinearity between radius, perimeter, and area features is worth exploring. For a more ambitious extension, replacing the manual FNA measurements with a CNN that extracts features directly from raw biopsy images would bring the system closer to a real diagnostic tool.
+
+
+## Contributing
+
+Contributions are welcome from students and researchers. Fork the repository, create a feature branch, and open a pull request. Ideas include adding a model comparison dashboard, implementing SHAP values for per-prediction explainability, or extending the API to support batch predictions.
+
+
+## Author
 
 **Aqib Niazi**
 
 [![GitHub](https://img.shields.io/badge/GitHub-AqibNiazi-181717?style=flat&logo=github)](https://github.com/AqibNiazi)
+[![Kaggle](https://img.shields.io/badge/Kaggle-maqibniazi-20BEFF?style=flat&logo=kaggle&logoColor=white)](https://www.kaggle.com/maqibniazi)
 
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 
 <div align="center">
 
 Built with ❤️ for learning and research.
 
-**If this project helped you, consider giving it a ⭐ on GitHub!**
+If this project helped you, consider giving it a ⭐ on GitHub.
 
 </div>
